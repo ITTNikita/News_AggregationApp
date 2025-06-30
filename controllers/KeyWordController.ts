@@ -32,7 +32,6 @@ export class KeywordController {
   }
 
   private static async viewKeywords(user: User) {
-    console.log("view Notification");
     const keywords = await NotificationService.getUserKeywords(user.id);
     if (!keywords.length) {
       console.log(' No keywords added.');

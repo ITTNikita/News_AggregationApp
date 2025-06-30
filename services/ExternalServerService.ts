@@ -1,19 +1,6 @@
 import axios from 'axios';
 import { BASE_URL } from '../config/constant';
-
-export interface ExternalServerInput {
-  name: string;
-  apiurl: string;
-  key: string;
-   isActive: number;
-  article_id:string;
-  title:string;
-  description:string;
-  source_name:string;
-  url:string;
-  category:string;
-  dataKey:string;
-}
+import { ExternalServerInput } from '../models/ExternalServerInput';
 
 export class ExternalServerService {
   static async fetchStatuses() {
@@ -37,6 +24,16 @@ export class ExternalServerService {
     const response = await axios.post(`${BASE_URL}/external-servers`, {
       parameters: input
     });
+    return response.data;
+  }
+  
+  static async addNewCategory(category:string)
+  {
+    const response = await axios.post(`${BASE_URL}/external-servers/new-category`,
+      {
+        parameters:category
+      }
+    )
     return response.data;
   }
 }

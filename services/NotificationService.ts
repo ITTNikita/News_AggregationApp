@@ -4,12 +4,11 @@ import { Notification } from '../models/Notification';
 import { User } from '../models/User';
 
 export class NotificationService {
-  static async getNotifications(user: User): Promise<Notification[]> {
-    console.log("Fetching notifications for user:", user.id);
-    const response = await axios.get(`${BASE_URL}/notifications/${user.id}`);
-    console.log("Response data:", response.data);
+  static async getNotifications(user: User): Promise<Notification[]> {   
+    const response = await axios.get(`${BASE_URL}/notifications/${user.id}`);   
     return response.data;
-  }
+}
+
 static async setCategoryPreference(userId: string, category: string, isEnabled: boolean) {
   console.log(`Setting category preference for user ${userId}: ${category} isEnabled: ${isEnabled}`);
     try {
@@ -24,9 +23,9 @@ static async setCategoryPreference(userId: string, category: string, isEnabled: 
     return false;
   }
 } 
+
 static async getUserKeywords(userId: string): Promise<{ keyword: string; is_enabled: number }[]> {
   try {
-    console.log("testing nikita")
     const response = await axios.get(`${BASE_URL}/notifications/keywords/${userId}`);
     console.log(response.data);
     return response.data; 
@@ -35,6 +34,7 @@ static async getUserKeywords(userId: string): Promise<{ keyword: string; is_enab
     return [];
   }
 }
+
 static async addKeyword(userId: string, keyword: string): Promise<boolean> {
   try {
     await axios.post(`${BASE_URL}/notifications/keywords`, { userId, keyword });
@@ -44,6 +44,7 @@ static async addKeyword(userId: string, keyword: string): Promise<boolean> {
     return false;
   }
 }
+
 static async updateKeywordStatus(userId: string, keyword: string, isEnabled: string): Promise<boolean> {
   try {
     const enabled = isEnabled === '1';

@@ -2,9 +2,8 @@ import { User } from '../models/User';
 import {askQuestion} from '../utils/readlineUtils';
 import { NewsController } from './NewsController';
 
-export class HeadlineMenu {
+export class HeadlineMenuController {
   static async display(user:User) {
-    console.log("user info nikita", user);
     const currentDate = new Date();
     const formattedDate = currentDate.toLocaleDateString('en-GB', {
       day: '2-digit',

@@ -1,10 +1,11 @@
 import { askQuestion } from '../utils/readlineUtils';
 import { ExternalServerController } from './ExternalServerController';
+import { User } from '../models/User';
 
 export class AdminController {
-  static async displayAdminMenu(userName: string) {
+  static async displayAdminMenu(user:User) {
     while (true) {
-      this.displayHeader(userName);
+      this.displayHeader(user.username);
       this.displayOptions();
       
       const choice = await askQuestion('\nEnter your choice (1-5): ');
@@ -36,11 +37,13 @@ export class AdminController {
     console.log('1. View the list of external servers and statuses');
     console.log('2. View the External Server Details');
     console.log('3. Update/Edit External Server Details');
-    console.log('4. Add News Category');
-    console.log('5. Logout');
+    console.log('4. Add New News server');
+    console.log('5. Add News Category');
+    console.log('6. Hide the news');
+    console.log('7. Logout');
   }
 
-  private static async handleMenuChoice(choice: string): Promise<boolean> {
+  private static async handleMenuChoice(choice: string) {
     switch (choice) {
       case '1':
         await ExternalServerController.showStatuses();
@@ -52,11 +55,17 @@ export class AdminController {
         await ExternalServerController.updateDetails();
         break;
       case '4':
-        await ExternalServerController.addNewCategory();
+        await  ExternalServerController.addNewNewsServer();
         break;
       case '5':
+        await ExternalServerController.addNewCategory();
+        break;  
+      case '6': 
+        await ExternalServerController.hideArticle();
+      break;
+      case '7':
         console.log('Logging out');
-        return false;
+        return ;
       default:
         console.log('Invalid choice. Please enter a number between 1 and 5');
     }

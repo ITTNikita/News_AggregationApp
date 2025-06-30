@@ -5,13 +5,10 @@ import { askQuestion } from '../utils/readlineUtils';
 
 export class SavedArticlesController {
   static async saveArticle(user:User, article: Article) {
-    console.log("user in SavedArticlesController",user);
     await SavedArticlesService.save(user, article);
   }
 
-  static async viewArticles(user:User) {
-    console.log("user in SavedArticlesController viewArticles",user);
-    
+  static async viewArticles(user:User) {    
     const articles = await SavedArticlesService.getAll(user);
     if (!articles.length) {
       console.log(' No saved articles found.');
@@ -24,7 +21,7 @@ export class SavedArticlesController {
         'Category': a.category
       })));
     }
- while (true) {
+   while (true) {
         console.log('\nOptions:');
         console.log('1. Back');
         console.log('2. Logout');
