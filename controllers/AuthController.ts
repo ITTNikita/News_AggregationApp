@@ -8,7 +8,7 @@ export class AuthController {
     const username = await InputService.askUsername();
     const password = await InputService.askPassword();
     const user = await AuthService.login(username, password);
-    if (!user) return;
+    if (!user) {return;}
 
     if (user.role === 'admin') {
       await AdminController.displayAdminMenu(user);

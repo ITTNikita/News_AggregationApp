@@ -1,12 +1,14 @@
 import { AuthController } from '../controllers/AuthController';
 import { askQuestion } from '../utils/readlineUtils';
+import { logMessage } from '../logs/LogService';
 
-async function mainMenu() {
+export async function mainMenu() {
   while (true) {
     console.log('\nWelcome to the News Aggregator');
     console.log('1. Login');
     console.log('2. Sign Up');
     console.log('3. Exit');
+    logMessage('Displaying main menu options');
 
     const choice = await askQuestion('Choose an option: ');
 

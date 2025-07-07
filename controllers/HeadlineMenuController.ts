@@ -10,11 +10,7 @@ export class HeadlineMenuController {
       month: 'short',
       year: 'numeric',
     });
-    const formattedTime = currentDate.toLocaleTimeString('en-US', {
-      hour: 'numeric',
-      minute: '2-digit',
-      hour12: true,
-    });
+ 
 
     console.log(`\nWelcome to the News Application, ${user.username}! Date: ${formattedDate}`);
     console.log("Please choose the option below:");

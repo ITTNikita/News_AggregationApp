@@ -13,6 +13,12 @@ export class FeedBackController {
     static async reportArticle(user:User){
         const articleId = await askQuestion('Enter the Article Id to Report:');
         console.log('article id',articleId)
-        await FeedBackService.reportArticle(user.id,articleId);
+        const isReported = await FeedBackService.reportArticle(user.id,articleId);
+        if(isReported){
+            console.log('Article reported successfully');   
+        }else{
+            console.log('Failed to report the article');
+            return;
+        }
     }
 }

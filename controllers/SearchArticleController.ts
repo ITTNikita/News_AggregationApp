@@ -2,6 +2,7 @@ import { SearchService } from '../services/SearchService';
 import { SavedArticlesController } from './SavedArticlesController';
 import { User } from '../models/User';
 import { askQuestion } from '../utils/readlineUtils';
+import { Article } from '../models/Article';
 
 export class SearchArticleController {
   static async search(user: User): Promise<void> {
@@ -32,7 +33,7 @@ export class SearchArticleController {
     console.table(
       results.map((article, index) => ({
         ID: index + 1,
-        ArticleId: article.id,
+        ArticleId: article.article_id,
         Title: article.title,
         Date: new Date(article.publishedAt || article.date).toLocaleDateString(),
         Likes: article.like_count,
